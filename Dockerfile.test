@@ -1,0 +1,11 @@
+FROM 'golang:1.11-alpine' as builder
+WORKDIR /app
+
+COPY go.mod .
+COPY go.sum .
+RUN apk add git g++
+RUN go mod download
+
+COPY . .
+
+CMD ["go", "test"]

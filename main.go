@@ -26,5 +26,6 @@ func main() {
 	router := mux.NewRouter();
 	router.HandleFunc("/", Index);
 	router.HandleFunc("/another", Another);
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Println("RUNNING ON PORT 8080");
+	log.Fatal(http.ListenAndServe(":8080", router));
 }
