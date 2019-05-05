@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 	"encoding/json"
-	"fmt"
 )
 
 type Message struct {
@@ -14,8 +13,7 @@ type Message struct {
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	response := &Message{Msg: "Hello, World!"}
-	result := json.NewEncoder(w).Encode(response)
-	fmt.Printf("%v", result)
+	json.NewEncoder(w).Encode(response)
 }
 
 func main() {
