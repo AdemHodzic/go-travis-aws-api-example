@@ -16,8 +16,15 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
+func Another(w http.ResponseWriter, r *http.Request) {
+	response := &Message{Msg: "Another Hello, World!"}
+	json.NewEncoder(w).Encode(response)
+}
+
+
 func main() {
 	router := mux.NewRouter();
 	router.HandleFunc("/", Index);
+	router.HandleFunc("/another", Another);
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
