@@ -1,16 +1,10 @@
-# use the latest ubuntu environment (18.04) available on travis
-dist: xenial
+sudo: required
 
-language: go
-
-# Force-enable Go modules. Also force go to use the code in vendor/
-# These will both be unnecessary when Go 1.13 lands.
-env:
-  - GO111MODULE=on
-  - GOFLAGS='-mod vendor'
+services:
+  - docker
 
 before_script:
-  - go mod download
+  - docker build -t gomods-test -f Dockerfile.test .
 
 script:
-  - go test
+  - docker run gomods-test
